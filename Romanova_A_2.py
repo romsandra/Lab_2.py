@@ -93,17 +93,19 @@ print_plot(array_plot)
 
 import csv
 
+summ = 0
 summ1 = 0
 summ2 = 0
 with open('books.csv') as csvfile:
     table = list(csv.reader(csvfile, delimiter=';'))
     table.pop(0)
     for row in table:
+        summ += 1
         if int(row[5]) <= 12:
             summ2 += 1
         else:
             summ1 += 1
 
 print('       0       10%       20%       30%       40%       50%       60%       70%       80%       90%       100%')
-print('Другие ' + YELLOW + ' ' * 100 + END, summ1)
-print('<=12   ' + GREEN + ' ' * procent(summ1, summ2) + END, summ2)
+print('Другие ' + YELLOW + ' ' * procent(summ1, summ) + END, summ1, '(', procent(summ1, summ), '% )')
+print('<=12   ' + GREEN + ' ' * procent(summ2, summ) + END, summ2, '(', procent(summ2, summ), '% )')
